@@ -3,9 +3,6 @@ package aabir.example.securityjpa.entity;
 import lombok.*;
 import jakarta.persistence.*;
 
-import java.util.List;
-import java.util.Set;
-
 @Entity
 @Data
 @NoArgsConstructor

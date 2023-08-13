@@ -71,6 +71,63 @@ This template implements role-based access control with two primary roles:
 
 By default, the application will attempt to seed some example data into the database when it starts. This includes sample users with associated roles. If you want to customize this data or disable automatic seeding, you can modify the `DataSeeder` class in the `aabir.example.securityjpa` package.
 
+### Testing the Application
+
+To test the functionality of the Spring Boot Security with JWT application, follow these steps:
+
+1. **User Authentication**:
+
+    - Access the `/authenticate` endpoint using a POST request with the following JSON body:
+
+      ```json
+      {
+        "userName": "user",
+        "password": "password"
+      }
+      ```
+
+    - The response will include a JWT token. Copy this token for the next steps.
+
+2. **Accessing User Endpoint**:
+
+    - Make a GET request to the `/user` endpoint and include the JWT token in the `Authorization` header with the value `"Bearer <TOKEN>"`.
+
+    - You should receive a response with the message: `Welcome, user!`
+
+3. **Accessing Admin Endpoint**:
+
+    - Make a GET request to the `/admin` endpoint using the same JWT token in the `Authorization` header.
+
+    - You should receive a response with the message: `Welcome, admin!`
+
+### Expected Behavior
+
+- The `/user` endpoint is accessible only by users with the "USER" or "ADMIN" role.
+- The `/admin` endpoint is accessible only by users with the "ADMIN" role.
+- The `/authenticate` endpoint provides a JWT token upon successful user authentication.
+
+### Expanding the Application
+
+You can further expand the functionality of this Spring Boot application:
+
+1. **Frontend Integration**: Develop a frontend interface to interact with the backend API and handle user authentication using the generated JWT token.
+
+2. **User Registration**: Implement a user registration process, allowing new users to create accounts with appropriate roles.
+
+3. **Custom Claims**: Extend the JWT payload with custom claims, such as user-specific information or additional permissions.
+
+4. **Password Encryption**: Enhance security by integrating password encryption mechanisms, such as BCrypt, for user passwords.
+
+5. **Token Refresh**: Implement a token refresh mechanism to handle token expiration and improve user experience.
+
+6. **API Documentation**: Create comprehensive API documentation using tools like Swagger to help users understand available endpoints and their usage.
+
+7. **Integration Tests**: Write integration tests to ensure the proper functioning of the application's security features.
+
+Feel free to explore these expansion options and tailor the application to your specific requirements.
+
+---
+
 ## Contributing
 
 Contributions are welcome! Feel free to submit pull requests or issues for any improvements or concerns you encounter.
